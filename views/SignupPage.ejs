@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Create Account</h1>
+
+        <form class="signup-form" id="signupForm">
+            <input type="text" name="name" placeholder="Enter Your Name" id="name" required>
+            <input type="email" name="email" placeholder="Email" id="email" required>
+            <input type="password" name="password" placeholder="Password" id="password" required>
+            <button type="button" onclick="signup()">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        async function signup() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const data = { name, email, password };
+
+            console.log("Data to send:", data);
+
+            try {
+                // Await the fetch response
+                const response = await fetch("http://localhost:3000/api/auth/signUp", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json(); // parse JSON response
+                console.log("Server response:", result);
+
+                // Optional: handle success
+                if(result.success) {
+                    alert("Signup successful!");
+                } else {
+                    alert("Signup failed: " + result.message);
+                }
+
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+    </script>
+</body>
+</html>

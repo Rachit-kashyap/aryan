@@ -4,9 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+ <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.dashboard {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    text-align: center;
+    width: 350px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.dashboard:hover {
+    transform: translateY(-5px);
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #f0f0f0;
+}
+
+.update-container button#toggleUpdate {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ffd700;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.update-container button#toggleUpdate:hover {
+    background-color: #ffea00;
+    transform: scale(1.05);
+}
+
+.update-form {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.5s ease;
+}
+
+.update-form.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.update-form input {
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.update-form input:focus {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    transform: scale(1.02);
+}
+
+.update-form button {
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #ffd700;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.update-form button:hover {
+    background-color: #ffea00;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+ </style>
 </head>
 <body>
-    <h1>Welcome </h1>
-    
+    <div class="dashboard">
+        <h1>Welcome, user@gmail.com</h1>
+        <h2>Your password: ********</h2>
+
+        <div class="update-container">
+            <button id="toggleUpdate">Update Details</button>
+            <div class="update-form">
+                <input type="email" placeholder="Enter new email" id="email">
+                <input type="password" placeholder="Enter new password" id="password">
+                <button>Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById("toggleUpdate");
+        const updateForm = document.querySelector(".update-form");
+
+        toggleBtn.addEventListener("click", () => {
+            updateForm.classList.toggle("show");
+        });
+    </script>
 </body>
 </html>
